@@ -3,10 +3,67 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Template Vue</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Aula 01-05</title>
     <script src="./vue.js"></script>
   </head>
   <body>
-    <script></script>
+    <div id="comercio">
+      <p>Bermudas - R$ <span>{{preco}}</span></p>
+      <button @click="total++">Adicionar</button>
+      <button @click="total--">Remover</button>
+      <p>Qtd - <span>{{total}}</span></p>
+
+      <p>Total - R$ <span>{{preco*total}}</span></p>
+    </div>
+    <div>
+      <p>Camisas - R$ <span class="preco"></span></p>
+      <button class="adicionar">Adicionar</button>
+      <button class="remover">Remover</button>
+      <p>Qtd - <span class="total"></span></p>
+
+      <p>Total - R$ <span class="precoTotal"></span></p>
+    </div>
+    <script>
+      const vm = new Vue({
+        el: '#comercio',
+        data: {
+          preco: 25,
+          total: 0,
+        },
+      });
+
+      const dados = {
+        preco: 49,
+        total: 0,
+      };
+
+      const preco = document.querySelector('.preco');
+      const total = document.querySelector('.total');
+      const precoTotal = document.querySelector('.precoTotal');
+      const adicionar = document.querySelector('.adicionar');
+      const remover = document.querySelector('.remover');
+
+      const atualizarUI = () => {
+        preco.innerText = dados.preco;
+        total.innerText = dados.total;
+        precoTotal.innerHTML = dados.preco * dados.total;
+      };
+
+      const incrementar = () => {
+        dados.total++;
+        atualizarUI();
+      };
+
+      const decrementar = () => {
+        if (dados.total > 0) dados.total--;
+        atualizarUI();
+      };
+
+      atualizarUI();
+      adicionar.addEventListener('click', incrementar);
+      remover.addEventListener('click', decrementar);
+    </script>
   </body>
 </html>
