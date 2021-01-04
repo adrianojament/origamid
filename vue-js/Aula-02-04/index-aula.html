@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Template Vue</title>
+    <script src="./vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <button @click="handleClick">Clique aqui</button>
+      <p>
+        {{contator}}
+        <button @click="contator++">+</button>
+        <button @click="contator--">-</button>
+      </p>
+      <p>        
+        <button @click="ativo = !ativo">Toggle</button>
+        <p v-if="ativo">
+          {{ativo}}
+          Ativo
+        </p>
+      </p>
+      <p>
+        <a href="#interno" @click.prevent="handleClick">Link Interno</a>
+      </p>
+      <p>
+        <input type="text" @keyup="handleClick">
+        Qdo ativar o enter
+        <input type="text" @keyup.enter="handleClick">
+      </p>
+      <p @mousemove="handleMove">
+        Esse é o mouse x: {{mouse.x}}
+      </p>
+    </div>
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data:{
+          contator: 0,
+          ativo: true,
+          mouse: "",
+        },
+        methods:{
+          handleClick(event){
+            console.log(event.key);
+          },
+          handleMove(event){
+            this.mouse = event;
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

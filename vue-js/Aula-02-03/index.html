@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Template Vue</title>
+    <script src="./vue.js"></script>
+  </head>
+  <body>
+    <!-- https://api.iextrading.com/1.0/stock/aapl/quote -->
+    <div id="app">
+      <p>latestTime: {{acoes.latestTime}}</p>
+      <p>latestPrice: {{acoes.latestPrice}}</p>
+      <p>companyName: {{acoes.companyName}}</p>
+      <button @click="puxarAcoes()">Acoes</button>
+    </div>
+    <script>
+      const vw = new Vue({
+        el: "#app",
+        data: {
+          acoes: {},
+        },
+        methods:{
+          puxarAcoes(){
+            fetch("https://cloud.iexapis.com/stable/stock/MSFT/quote?token=pk_46ff63e126af4a4d89c2843a26d29291")            
+              .then(response => response.json())
+              .then(json => {
+                this.acoes =json;                 
+              });
+          }
+        },
+      });
+    </script>
+  </body>
+</html>

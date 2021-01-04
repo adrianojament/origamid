@@ -7,16 +7,16 @@
     <script src="./vue.js"></script>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <div v-html="lista" v-once></div>
+    </div>
     <script>
       const vm = new Vue({
         el: "#app",
         data:{
-
+          lista: "<ul><li>Item 01</li><li>Item 02</li><li>Item 03</li></ul>"
         },
         methods:{},
-		watch:{},
-		computed:{},
       });
     </script>
   </body>

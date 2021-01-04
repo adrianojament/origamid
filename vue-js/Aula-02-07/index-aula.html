@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Template Vue</title>
+  <script src="./vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <h1>Estudando computed</h1>
+    <h2>{{total}}</h2>
+    <h3>Todos os carros </h3>
+    <ul>
+      <li v-for="carro in carros">
+        {{carro.marca}}
+      </li>
+    </ul>
+    <h3>Carros Azuis</h3>
+    <ul>
+      <li v-for="carro in carrosAzuis">
+        {{carro.marca}}
+      </li>
+    </ul>
+    <h1>Estudando Watch</h1>
+    {{contador}}
+    <button @click="contador++">Adicionar</button>
+  </div>
+  <script>
+    const vm = new Vue({
+      el: "#app",
+      data: {
+        preco: 59,
+        desconto: 10,
+        contador: 0,
+        carros: [
+          {
+            marca: "VW",
+            cor: "Azul"
+          },
+          {
+            marca: "Ford",
+            cor: "Preto"
+          },
+          {
+            marca: "Tesla",
+            cor: "Azul"
+          }],
+      },
+      methods: {},
+      computed: {
+        total() {
+          return "R$ " + (this.preco - this.desconto);
+        },
+        carrosAzuis() {
+          const filtro = this.carros.filter(({ cor }) => cor === "Azul");
+          return filtro;
+        }
+      },
+      watch: {
+        contador(valorNovo, valorAntigo) {
+          console.log("New: " + valorNovo + " Old: " + valorAntigo);
+        },
+      }
+    });
+  </script>
+</body>
+
+</html>

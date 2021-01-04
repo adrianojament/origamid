@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Template Vue</title>
+    <script src="./vue.js"></script>
+  </head>
+  <body>
+    <div id="app">{{nome}}</div>
+    <div id="app2">{{ferramenta}}</div>
+    <div id="app3">{{instrumento}}</div>
+    <script>
+      const vm = new Vue({
+        el: '#app',
+        data: {
+          nome: 'martelo',
+        },
+      });
+
+      const vmDiv2 = new Vue({
+        el: '#app2',
+        data: {
+          ferramenta: 'chave fenda',
+        },
+      });
+
+      const vmDiv3 = new Vue({
+        el: '#app3',
+        data: {
+          instrumento: 'teclado',
+        },
+      });
+    </script>
+  </body>
+</html>

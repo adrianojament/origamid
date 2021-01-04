@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Template Vue</title>
+    <script src="./vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <ul>
+        <li><a @click.prevent="puxarAcao" href="https://cloud.iexapis.com/stable/stock/aapl/quote">Apple</a></li>
+        <li><a @click.prevent="puxarAcao" href="https://cloud.iexapis.com/stable/stock/googl/quote">Google</a></li>
+        <li><a @click.prevent="puxarAcao" href="https://cloud.iexapis.com/stable/stock/amzn/quote">Amazon</a></li>
+        <li><a @click.prevent="puxarAcao" href="https://cloud.iexapis.com/stable/stock/ebay/quote">Ebay</a></li>
+        <li><a @click.prevent="puxarAcao" href="https://cloud.iexapis.com/stable/stock/pypl/quote">Paypal</a></li>
+      </ul>
+      <div>
+        <p>Empresa: {{acao.companyName}}</p>
+        <p>Valor de Mercado: {{acao.marketCap}}</p>
+        <p>Valor da acao: {{acao.latestPrice}}</p>
+        
+      </div>
+    </div>
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data:{
+          acao: {},
+        },
+        methods:{
+          puxarAcao(event){
+            const ulr = event.currentTarget.href+"?token=pk_46ff63e126af4a4d89c2843a26d29291";
+            fetch(ulr)
+            .then(r => r.json())
+            .then(r => {
+              this.acao = r;
+            })
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
